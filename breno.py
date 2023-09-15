@@ -4,15 +4,16 @@ with open("example.json", "r") as file:
     data = json.load(file)
     print("Lista atual:", data)
 
-lista_numero = input("Digite o número da lista que deseja editar (1 ou 2): ")
+lista_numero = input("Digite o número da lista que deseja editar: ")
+banco = data["banco"]
 
-if lista_numero in data:
+if lista_numero in banco:
     campo = input("Digite o nome do campo que deseja editar: ")
 
-    if campo in data[lista_numero]:
+    if campo in banco[lista_numero]:
         novo_valor = input(f"Digite o novo valor para o campo '{campo}': ")
 
-        data[lista_numero][campo] = novo_valor
+        banco[lista_numero][campo] = novo_valor
         print("Lista atualizada:")
         print(data)
 
