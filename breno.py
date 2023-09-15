@@ -2,6 +2,7 @@ import json
 
 with open("example.json", "r") as file:
     data = json.load(file)
+    print("Lista atual:", data)
 
 lista_numero = input("Digite o número da lista que deseja editar (1 ou 2): ")
 
