@@ -2,24 +2,63 @@ import json
 
 with open("example.json", "r") as file:
     data = json.load(file)
-    print("Lista atual:", data)
 
-lista_numero = input("Digite o número da lista que deseja editar: ")
-banco = data["banco"]
+def SetCampo(banco, objeto):
+    campos = []
 
-if lista_numero in banco:
-    campo = input("Digite o nome do campo que deseja editar: ")
+    for campo in data[banco][objeto]:
+        campos.append(campo)
 
-    if campo in banco[lista_numero]:
-        novo_valor = input(f"Digite o novo valor para o campo '{campo}': ")
+    print("Campos disponiveis: " + ", ".join(campos))
 
-        banco[lista_numero][campo] = novo_valor
-        print("Lista atualizada:")
-        print(data)
+    mode = input("Selecione um modo, v para visualizar ou e para editar: ")
+    campo = input("Escolha os campos para "+("editar" if mode=="e" else "visualizar")+" (Separe por ,): ").split(",")
 
-        with open("example.json", "w") as file:
-            json.dump(data, file, indent=4)
+    all_exists = True
+    for id, cam in enumerate(campo):
+        campo[id] = cam.strip()
+        all_exists = (all_exists and cam in data[banco][objeto])
+
+        if all_exists:
+            if mode == "e":
+                for cam in campo:
+                    newValue = input("Selecione um valor para "+cam+": ").split(",")
+    
+                    if len(newValue) == 1:
+                        newValue = newValue[0]
+    
+                        data[banco][objeto][cam] = newValue
+                    else:
+                        for cam in campo:
+                            print("Campo "+cam+": "+json.dumps(data[banco][objeto][cam]))
+        else:
+            SetCampo(banco, objeto)
+
+def GetObject(banco):
+    print("Objetos disponiveis: " + str(len(data[banco])))
+    
+    objeto = int(input("Escolha um dentre estes objetos: ")) - 1
+    
+    if len(data[banco]) >= objeto: 
+        SetCampo(banco, objeto)
     else:
-        print(f"Campo '{campo}' não encontrado na lista {lista_numero}.")
-else:
-    print(f"Lista {lista_numero} não encontrada.")
+        GetObject(banco)
+
+def GetBanco():
+    bancos = []
+
+    for banco in data:
+        bancos.append(banco)
+
+    print("Bancos disponiveis: " + ", ".join(bancos))
+
+    banco = input("Esconha um dentre estes bancos: ")
+
+    if banco in data: 
+        GetObject(banco)
+    else:
+        GetBanco()
+
+GetBanco()
+with open("example.json", "w") as file:
+    json.dump(data, file, indent=4)
