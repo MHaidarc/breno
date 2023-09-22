@@ -39,6 +39,36 @@
                 "C#"
             ],
             "editor" : "neovim"
-        }
-    ]
+        },
+        {
+            "nome": "Lucas",
+            "idade": "13",
+            "nivel de proficiencia": "deus",
+            "linguagens": [
+                "python",
+                "C/C++",
+                "Rust",
+                "HTML",
+                "JavaScript",
+                "CSS",
+                "C#",
+                "COBOL",
+                "Assmebly",
+                "Java",
+                "PHP"
+            ],
+            "editor" : "neovim"
+        },
+        {
+            "nome": "Alexandre",
+            "idade": "13",
+            "nivel de proficiencia": "intermediário",
+            "linguagens": [
+                "python",
+                "HTML",
+                "CSS",
+                "C#"
+            ],
+            "editor" : "VSCode"
+    }
 }
