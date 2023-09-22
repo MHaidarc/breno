@@ -27,11 +27,18 @@
         {
             "nome": "Haidar",
             "idade": "14",
-            "n\u00edvel de profici\u00eancia": "avan\u00e7ado",
+            "nivel de proficiencia": "avancado",
             "linguagens": [
                 "python",
-                "cu"
-            ]
+                "C/C++",
+                "Rust",
+                "HTML",
+                "Go",
+                "JavaScript",
+                "CSS",
+                "C#"
+            ],
+            "editor" : "neovim"
         }
     ]
 }
